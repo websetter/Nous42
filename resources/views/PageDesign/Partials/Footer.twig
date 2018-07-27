@@ -7,11 +7,8 @@
 {% set topButtonPosition = config('Ceres.footer.to_top_button') %}
 
 <footer>
-  {% if categoryFooter is not defined %}
-    {% set categoryFooter = services.category.get(124, lang) %}
-  {% endif %}
 
-  {{ categoryFooter.details.first.description | raw }}
+  {% include category_template( 124, lang, webstoreConfig.webstoreId ) ignore missing %}
 
 
     <div class="{% if topButtonPosition == "right" %}back-to-top{% else %}back-to-top-center{% endif %} hidden-sm-down">
