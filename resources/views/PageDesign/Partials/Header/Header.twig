@@ -13,15 +13,13 @@
 {% set enableCurrencySelect = config("Ceres.currency.enable_selection") == "true" and activeCurrencies | length > 0 %}
 {% set currencyFormat = config("Ceres.currency.format") %}
 {% set currencyFormatSelect = config("Ceres.currency.format_selection") %}
+{% set companyLogo  = config("Ceres.header.company_logo") %}
 
-<header class="top-bar">
+<header>
     <div>
-        <div class="container-max">
+        <div class="container">
             <div class="row">
-                {{ LayoutContainer.show("Ceres::Header.LeftSide") }}
-
                 <ul id="controlsList" class="controls-list list-inline">
-
                     <li class="list-inline-item control-user">
                         <user-login-handler>
                             <a data-toggle="modal">
@@ -43,18 +41,6 @@
                         </a>
                     </li>
 
-                    {% if enableCurrencySelect == "true" %}
-                        <li class="list-inline-item dropdown control-languages">
-                            <a class=""
-                                data-toggle="collapse"
-                                href="#currencySelect"
-                                aria-expanded="false"
-                                aria-controls="currencySelect"
-                                data-parent="#controlsList">
-                                <span>{{ services.checkout.getCurrencyData()[currencyFormat] }}</span>
-                            </a>
-                        </li>
-                    {% endif %}
                     <li class="list-inline-item control-search">
                         <a class="anicon anicon-search-xcross"
                            aria-label="toggle search"
@@ -66,16 +52,7 @@
                             <span class="anicon-search-item" aria-hidden="true"></span>
                         </a>
                     </li>
-                    {% if "wish-list" in enabledRoutes or "all" in enabledRoutes %}
-                        <li class="list-inline-item control-wish-list">
-                            <wish-list-count>
-                                <a>
-                                    <span class="badge-right">0</span>
-                                    <i class="fa fa-heart-o" aria-hidden="true"></i>
-                                </a>
-                            </wish-list-count>
-                        </li>
-                    {% endif %}
+
                     <li class="list-inline-item control-basket">
                         <a v-toggle-basket-preview href="#" class="toggle-basket-preview">
                             {% if config("Ceres.header.basket_values") != "sum" %}
@@ -94,17 +71,21 @@
                         {% endif %}
                     </li>
                 </ul>
+                <div id="logo">
+                    <a href="{{ homepageURL }}">
+                        {% if ('http' in companyLogo) or ('layout/' in companyLogo) %}
+                            <img alt="{{ companyName }}" src="{{ companyLogo }}" class="img-fluid"/>
+                        {% else %}
+                            <img alt="{{ companyName }}" src="{{ plugin_path('Ceres') }}/{{ companyLogo }}" class="img-fluid"/>
+                        {% endif %}
+                    </a>
+                </div>
             </div>
         </div>
-        {% include "Ceres::PageDesign.Partials.Header.Navigation" %}
+        {% include "Nous42::PageDesign.Partials.Header.Navigation" %}
     </div>
 </header>
 
-
-<!-- breadcrumb -->
-{% if not services.template.isHome() and not services.template.isMyAccount() and not services.template.isCheckout() %}
-    {% include "Ceres::PageDesign.Partials.Header.Breadcrumb" %}
-{% endif %}
 
 {% if category.linklist == "Y" %}
     {% set initialCategory = { id: category.id } %}
@@ -114,40 +95,11 @@
 
 <mobile-navigation :navigation-tree-data="{{ categories | json_encode }}" :initial-category="{{ initialCategory | json_encode }}" template="#vue-mobile-navigation"></mobile-navigation>
 
-<div class="container-max page-header">
+<div class="container page-header">
     <div class="row">
         <div id="searchBox" class="cmp cmp-search-box collapse {% if services.template.isSearch() %} in {% endif %}">
             <item-search template="#vue-item-search"></item-search>
         </div>
-
-        {% if enableCurrencySelect == "true" %}
-        <div id="currencySelect" class="cmp cmp-currency-select collapse">
-            <div class="container-max">
-                <div class="currency-select-inner row">
-
-                    <div class="currency-list col-xs-12">
-                        <div class="list-title">
-                            <strong>{{ trans("Ceres::Template.headerCurrency") }}</strong>
-                            <hr>
-                        </div>
-                        <ul>
-                            {% for currency in services.checkout.getCurrencyList() if currency.name in activeCurrencies or activeCurrencies[0] == 'all' or currency.name == services.checkout.getCurrencyData().name %}
-                            <li{% if currency.name == services.checkout.getCurrencyData().name %} class="active"{% endif %}>
-                                <a href="{{ queryString({"currency": currency.name}) }}" rel="nofollow">
-                                    {% if currencyFormatSelect == 'all' %}
-                                        {{ currency.name }} ({{ currency.symbol }})
-                                    {% else %}
-                                        {{ currency[currencyFormatSelect] }}
-                                    {% endif %}
-                                </a>
-                            </li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {% endif %}
 
         <shop-country-settings country-flag-prefix="flag-icon-" :localization-data="{{ services.localization.getLocalizationData() | json_encode }}">
             <div id="countrySettings" class="row cmp cmp-country-settings no-margin collapse">
