@@ -6,9 +6,8 @@
 {% set useMegaMenu  = config("Ceres.header.megamenu_levels") > 1 %}
 
 <nav class="navbar{% if useMegaMenu %} megamenu{%endif%}">
-    <div class="container-max">
+    <div class="container">
         <div class="row">
-
               <button id="btnMainMenuToggler" v-open-mobile-navigation class="navbar-toggler hidden-lg-up" type="button">
                   &#9776;
               </button>
@@ -19,10 +18,12 @@
                 </ul>
                 {% if showHeaderNavBar == "top" or showHeaderNavBar == "both" or not services.template.isCategory() %}
                     {# includeCached('Ceres::PageDesign.Partials.Header.NavigationList.twig') #}
-                    {% include "Ceres::PageDesign.Partials.Header.NavigationList" %}
+                    {% include "Nous42::PageDesign.Partials.Header.NavigationList" %}
                 {% endif %}
             </div>
-
+            <div id="searchBox" class="cmp cmp-search-box">
+                <item-search template="#vue-item-search"></item-search>
+            </div>
         </div>
     </div>
 </nav>
