@@ -85,35 +85,20 @@
         </div>
       {% endfor %}
       <div class="col-xs-6 col-sm-3 col-lg-2">
-        <nav class="footer-column m-b-2">
           <h2 class="h5">{{ trans('Ceres::Template.footerColumnTitle3') }}</h2>
           <ul class="list-unstyled">
-
             <li>{{ trans('Ceres::Template.footerColumnVorteil1') }}</li>
             <li>{{ trans('Ceres::Template.footerColumnVorteil2') }}</li>
             <li>{{ trans('Ceres::Template.footerColumnVorteil3') }}</li>
             <li>{{ trans('Ceres::Template.footerColumnVorteil4') }}</li>
           </ul>
-        </nav>
       </div>
-      <div class="col-xs-6 col-sm-3">
-        <div class="footer-column">
-          {{ LayoutContainer.show("Ceres::Footer.RowOne") }}
-        </div>
-      </div>
-      <div class="col-xs-12 col-sm-3">
-        <div class="footer-column row">
-          {% set rowTwo = LayoutContainer.show("Ceres::Footer.RowTwo") %}
-
-          {{ rowTwo }}
-
-          <div class="col-xs-12{% if rowTwo|trim is not empty %} col-sm-6 col-lg-12{% endif %}">
-            {{ LayoutContainer.show("Ceres::Footer.RowThree") }}
-          </div>
-        </div>
+      <div class="col-xs-6 col-sm-3 col-lg-2">
+          <h2 class="h5">{{ trans('Ceres::Template.footerColumnTitle4') }}</h2>
+          <ul class="list-unstyled">
+          </ul>
+          <p>&copy; 2018 nous42 | WERK38<br><small>{{ trans('Ceres::Template.footerColumnPreisHinweis') }}</small></p>
       </div>
     </div>
-
-    {% set cat = services.category.get(config('Ceres.global.category.legal_disclosure')) %}
   </div>
 </div>
