@@ -20,7 +20,7 @@
     font-weight: normal;
     font-style: normal;
 }
-body > #vue-app, body > #vue-error {
+body > #vue-app, body > #vue-error, .wrapper-main .navbar {
   background-color: #fff;
 }
 body {
@@ -30,7 +30,7 @@ body {
   	color: #ababab;
 }
 .wrapper-main #page-body {
-    margin-top: 80px;
+    margin-top: 70px;
 }
 img {
 	border: none;
@@ -87,6 +87,9 @@ header .navbar {
   padding: 0 20px;
   color: #ababab;
 }
+#mainNavbarCollapsable ul.mainmenu > li:hover a {
+  background: #daff36;
+}
 #logo {
 	height: auto;
   max-width: 160px;
@@ -132,7 +135,7 @@ footer a:active {
   text-decoration:underline;
 }
 /*ende a link formatierung*/
-.mainmenu li {
+.mainmenu > li {
 	float: left;
 	list-style: none;
 	font-weight: 400;
@@ -203,9 +206,7 @@ footer li:last-child {
     outline:none;
     -webkit-appearance: none;
     color: #ababab;
-}
-#searchBox .search-submit {
-  padding: 0 20px;
+    padding: 0 20px;
 }
 #searchBox .search-submit .fa {
   -ms-transform: skew(35deg);
@@ -213,6 +214,9 @@ footer li:last-child {
   -moz-transform: skew(35deg);
   -o-transform: skew(35deg);
     transform: skew(35deg);
+}
+#homeSlider {
+  margin-bottom: 50px;
 }
 /*ItemViewCategoriesList*/
 .product-list.grid li {
