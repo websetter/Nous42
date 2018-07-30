@@ -91,7 +91,7 @@ header .navbar {
 }
 
 #mainNavbarCollapsable ul.mainmenu > li > ul {
-  min-width: 200px;
+  min-width: 170px;
   background: #f2f2f2;
 }
 #mainNavbarCollapsable ul.mainmenu > li > ul li {
@@ -99,13 +99,24 @@ header .navbar {
   width: auto;
   float: none;
   border-right: 1px solid #DDD;
-}
-#mainNavbarCollapsable ul.mainmenu > li > ul li a {
-  color: #ababab;
+  min-width: 0px;
+  padding: 0;
+  margin: 0;
 }
 #mainNavbarCollapsable ul.mainmenu > li > ul li:last-child {
   border-right: 0;
+  margin: 0;
 }
+#mainNavbarCollapsable ul.mainmenu > li > ul li a {
+  color: #ababab;
+  padding: 0 20px;
+}
+.no-touch #mainNavbarCollapsable ul.mainmenu > li > ul > li:hover,
+.touch #mainNavbarCollapsable ul.mainmenu > li > ul > li.hover {
+    color: #ababab;
+    background-color: #daff36 !important;
+}
+
 #logo {
 	height: auto;
   max-width: 160px;
