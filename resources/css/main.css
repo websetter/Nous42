@@ -70,13 +70,12 @@ header li {
 	padding-right: 4px;
 }
 header ul a {
-	color: #fff;
 	text-transform:uppercase;
 }
-header a {
+header #controlsList a {
 	color: #fff;
 }
-header a:hover, header a:active, header a:focus {
+header #controlsList a:hover, header #controlsList a:active, header #controlsList a:focus {
 	color: #daff36;
 }
 header .navbar {
@@ -88,7 +87,7 @@ header .navbar {
   color: #ababab;
 }
 #mainNavbarCollapsable ul.mainmenu > li:hover {
-  background: #daff36;
+  background-color: #daff36 !important;
 }
 
 #mainNavbarCollapsable ul.mainmenu > li > ul {
@@ -100,6 +99,9 @@ header .navbar {
   width: auto;
   float: none;
   border-right: 1px solid #DDD;
+}
+#mainNavbarCollapsable ul.mainmenu > li > ul li a {
+  color: #ababab;
 }
 #mainNavbarCollapsable ul.mainmenu > li > ul li:last-child {
   border-right: 0;
