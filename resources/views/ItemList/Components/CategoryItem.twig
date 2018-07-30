@@ -64,14 +64,12 @@
                         <span v-if="itemData.variation.mayShowUnitPrice">| ${ itemData.prices.default.basePrice }</span>
                     </div>
                 </div>
-                <add-to-basket :item="itemData" :item-url="itemData | itemURL"></add-to-basket>
-              
                 <a :href="itemData | itemURL" class="thumb-title small">
                     ${ itemData | itemName }
                 </a>
             </div>
             <!-- ./ITEM DETAILS  -->
-            <add-to-basket :item="itemData" :use-large-scale="true" :item-url="itemData | itemURL"></add-to-basket>
+            <button data-original-title="Artikel anzeigen"><a :href="itemData | itemURL" ><i class="fa fa-arrow-right fa-lg mobile-icon-right"></i></a></button>
         </div>
     </article>
 </script>

@@ -159,7 +159,7 @@ class Nous42ServiceProvider extends ServiceProvider
 
             $dispatcher->listen('IO.tpl.item', function (TemplateContainer $container)
             {
-                $container->setTemplate('Nous42::Item.SingleItem');
+                $container->setTemplate('Nous42::Item.SingleItemWrapper');
                 return false;
             }, self::PRIORITY);
         }
@@ -253,4 +253,3 @@ class Nous42ServiceProvider extends ServiceProvider
         }
     }
 }
-
