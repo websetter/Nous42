@@ -97,14 +97,14 @@
                 <div id="vue-rendered-item-list" style="display:none">
                     <item-list template="#vue-item-list" :total-items-data="{{ itemCountTotal }}" :category-id="{{ category.id }}"></item-list>
                 </div>
-
+                <p class="vat">
+                    * {{ trans("Ceres::Template.itemAllPrices") }} <span v-if="showNetPrices">{{ trans("Ceres::Template.itemExclVAT") }}</span>
+                    <span v-else>{{ trans("Ceres::Template.itemInclVAT") }}</span>
+                    {{ trans("Ceres::Template.itemExclusive") }}
+                    <a {% if shippingCat is not empty %} data-toggle="modal" href="#shippingscosts"{% endif %} title="{{ trans("Ceres::Template.itemShippingCosts") }}">{{ trans("Ceres::Template.itemShippingCosts") }}</a>
+                </p>
             </div>
-            <p class="vat">
-                * <span v-if="showNetPrices">{{ trans("Ceres::Template.itemExclVAT") }}</span>
-                <span v-else>{{ trans("Ceres::Template.itemInclVAT") }}</span>
-                {{ trans("Ceres::Template.itemExclusive") }}
-                <a {% if shippingCat is not empty %} data-toggle="modal" href="#shippingscosts"{% endif %} title="{{ trans("Ceres::Template.itemShippingCosts") }}">{{ trans("Ceres::Template.itemShippingCosts") }}</a>
-            </p>
+
         </div>
         {% if ceresConfig.pagination.position in ['bottom', 'top_bottom'] %}
             <div class="list-controls row">
