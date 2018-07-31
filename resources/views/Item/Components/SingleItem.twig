@@ -89,17 +89,17 @@
 
               <slot name="BeforePrice"></slot>
               <slot name="AfterPrice"></slot>
+              <slot name="BeforeAddToBasket"></slot>
 
-              <div class="row">
-                <slot name="BeforeAddToBasket"></slot>
+              <div class="cartBtn">
                 <add-to-basket
                   template="#vue-add-to-basket"
                   :item="$store.state.item.variation.documents[0].data"
                   :show-quantity="true"
                   :missing-order-properties="variationMissingProperties"
                   :is-variation-selected="isVariationSelected"></add-to-basket>
-                <slot name="AfterAddToBasket"></slot>
               </div>
+              <slot name="AfterAddToBasket"></slot>
 
               <!-- ./ITEM DETAIL -->
             </div>
