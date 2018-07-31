@@ -62,17 +62,18 @@
             {% else %}{{ trans("Ceres::Template.singleItemInclVAT") }}
             {% endif %}
             {{ trans("Ceres::Template.singleItemExclusive") }}
-            <a {% if shippingCat is not empty %} data-toggle="modal" href="#shippingscosts" {% endif %} title="{{ trans(" ceres::template.singleitemshippingcosts") }}" >{{ trans("Ceres::Template.singleItemShippingCosts") }}</a>
+            <a {% if shippingCat is not empty %} data-toggle="modal" href="#shippingscosts" {% endif %} title="{{ trans("Ceres::Template.singleitemshippingcosts") }}" >{{ trans("Ceres::Template.singleItemShippingCosts") }}</a>
           </span>
 
           <hr>
           <!-- Variation -->
           <div class="varSelect" v-if="variations.length > 0">
             <variation-select template="#vue-variation-select" :attributes="attributeNameMap" :variations="variations" :preselect="currentVariation.variation.id" @is-valid-change="isVariationSelected = $event"></variation-select>
+            <hr>
           </div>
           <!-- /Variation -->
 
-          <hr>
+
           <div class="detail">
             <p class="articlenumber">
               <span>{{ trans("Ceres::Template.singleItemNumber") }} </span>
@@ -89,9 +90,13 @@
 
               <slot name="BeforePrice"></slot>
               <slot name="AfterPrice"></slot>
-              <slot name="BeforeAddToBasket"></slot>
 
-              <div class="cartBtn">
+              <div v-if="currentVariation.variation.availability.id == 10">
+                <p>{{ trans("Ceres::Template.itemStockAnfrage") }}</p>
+                <slot name="BeforeAddToBasket"></slot>
+              </div>
+
+              <div class="cartBtn" v-if="currentVariation.variation.availability.id != 10">
                 <add-to-basket
                   template="#vue-add-to-basket"
                   :item="$store.state.item.variation.documents[0].data"
