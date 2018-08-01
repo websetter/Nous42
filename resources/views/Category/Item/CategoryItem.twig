@@ -18,7 +18,9 @@
 
     <div class="categoriegrid page-content container categoryItem">
       <p>{{ itemCountTotal }}</p>
-      <p>{{ paginatedResult.total }}</p>
+      <p>{{rowsPerPage[0] }}</p>
+      <p>{{rowsPerPage }}</p>
+
         {% if not ceresConfig.item.showCategoryImage %}
             <div class="row">
                 <div class="col-xs-12">
