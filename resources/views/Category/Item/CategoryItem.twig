@@ -16,7 +16,7 @@
 
     {% set shippingCat = config("Ceres.global.shippingCostsCategoryId") %}
 
-    <div class="categoriegrid page-content container {{ rowsPerPage }}">
+    <div class="categoriegrid page-content container categoryItem {{ rowsPerPage }}">
         {% if not ceresConfig.item.showCategoryImage %}
             <div class="row">
                 <div class="col-xs-12">
