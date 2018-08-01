@@ -73,7 +73,7 @@
 {% set defaultSortingSearch = config('Ceres.sort.defaultSortingSearch') %}
 {% set rowsPerPage = config('Ceres.pagination.rowsPerPage') | split(', ') %}
 {% set columnsPerPage = config('Ceres.pagination.columnsPerPage') %}
-{% set itemsPerPage = 2 * columnsPerPage %}
+{% set itemsPerPage = (rowsPerPage[0] * columnsPerPage) - 12 %}
 {% set performanceLevel = config('Ceres.log.performance.level') %}
 {% set itemName = config('Ceres.item.name') %}
 
