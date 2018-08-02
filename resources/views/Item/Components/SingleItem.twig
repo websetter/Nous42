@@ -58,8 +58,7 @@
           </div>
 
           <span class="vat">
-            {% if services.customer.showNetPrices() %}{{ trans("Ceres::Template.singleItemExclVAT") }}
-            {% else %}{{ trans("Ceres::Template.singleItemInclVAT") }}
+            {{ trans("Ceres::Template.singleItemInclVAT") }}
             {% endif %}
             {{ trans("Ceres::Template.singleItemExclusive") }}
             <a {% if shippingCat is not empty %} data-toggle="modal" href="#shippingscosts" {% endif %} title="{{ trans("Ceres::Template.singleitemshippingcosts") }}" >{{ trans("Ceres::Template.singleItemShippingCosts") }}</a>
