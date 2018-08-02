@@ -76,13 +76,12 @@
 
           <div class="detail">
             <p class="articlenumber">
-              <span>{{ trans("Ceres::Template.singleItemNumber") }} </span>
+              <span>{{ trans("Ceres::Template.singleItemNumber") }}: </span>
                   <span>${ currentVariation.variation.number }</span>
                 </p>
                 <p v-if="currentVariation.variation.availability" :class="'availability tag availability_' + currentVariation.variation.availability.id">
-                  <span>
-                    ${ currentVariation.variation.availability.names.name }
-                  </span>
+                    <span>{{ trans("Ceres::Template.basketAvailability") }}: </span>                
+                  <span> ${ currentVariation.variation.availability.names.name }</span>
                 </p>
               </div>
 
