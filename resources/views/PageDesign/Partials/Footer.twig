@@ -20,7 +20,7 @@
       </div>
       {% for i in 1..numberOfCols %}
         <div class="col-xs-12 col-sm-6 col-md-3">
-            <h4>{{ trans('Ceres::Template.footerColumnTitle' ~ i) }}</h4>
+            <h4>{{ trans('Ceres::Template.footerColumnTitle2') }}</h4>
             <ul class="list-unstyled links">
               {% set footerCategories = config('Ceres.footer.col_' ~ i ~ '_categories') | find("[0-9]+") %}
               {% for catID in footerCategories %}
