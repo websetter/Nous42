@@ -79,8 +79,8 @@
               <span>{{ trans("Ceres::Template.singleItemNumber") }}: </span>
                   <span>${ currentVariation.variation.number }</span>
                 </p>
-                <p v-if="currentVariation.variation.availability" :class="'availability tag availability_' + currentVariation.variation.availability.id">
-                    <span>{{ trans("Ceres::Template.basketAvailability") }}: </span>                
+                <p v-if="currentVariation.variation.availability" :class="'availability">
+                    <span>{{ trans("Ceres::Template.basketAvailability") }}: </span>
                   <span> ${ currentVariation.variation.availability.names.name }</span>
                 </p>
               </div>
