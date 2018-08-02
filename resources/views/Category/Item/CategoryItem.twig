@@ -93,8 +93,11 @@
                     <item-list template="#vue-item-list" :total-items-data="{{ itemCountTotal }}" :category-id="{{ category.id }}"></item-list>
                 </div>
                 <p class="vat">
-                    * {{ trans("Ceres::Template.itemAllPrices") }} <span v-if="showNetPrices">{{ trans("Ceres::Template.itemExclVAT") }}</span>
-                    <span v-else>{{ trans("Ceres::Template.itemInclVAT") }}</span>
+
+                    * {{ trans("Ceres::Template.itemAllPrices") }}
+                    {% if services.customer.showNetPrices() %} <span>{{ trans("Ceres::Template.itemExclVAT") }}</span> {% else %}
+                    <span>{{ trans("Ceres::Template.itemInclVAT") }}</span>
+                    {% endif %}
                     {{ trans("Ceres::Template.itemExclusive") }}
                     <a {% if shippingCat is not empty %} data-toggle="modal" href="#shippingscosts"{% endif %} title="{{ trans("Ceres::Template.itemShippingCosts") }}">{{ trans("Ceres::Template.itemShippingCosts") }}</a>
                 </p>
