@@ -57,7 +57,7 @@
                         {% if megaMenuLevels == "1" %}
                             {% for child in category.children %}
                                 {% if child.details | length > 0 %}
-                                    <li>
+                                    <li class="{% for breadcrumb in breadcrumbs %}{% if category.id == breadcrumb.id %} active{% endif %}{% endfor %}" v-update-sidenav-selection="$store.getters.breadcrumbs" data-category-id="{{ category.id }}">
                                         <a href="{{ currentScopeUrl }}/{{ child.details[0].nameUrl }}{{ urls.trailingSlashSuffix }}" v-render-category="{ id: {{ child.id }}, type: '{{ child.type }}', scrollToTop: 600 }">{{ child.details[0].name }}</a>
                                     </li>
                                 {% endif %}
