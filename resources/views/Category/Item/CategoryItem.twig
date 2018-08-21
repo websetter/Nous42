@@ -99,7 +99,7 @@
                     <span>{{ trans("Ceres::Template.itemInclVAT") }}</span>
                     {% endif %}
                     {{ trans("Ceres::Template.itemExclusive") }}
-                    <a {% if shippingCat is not empty %} data-toggle="modal" href="#shippingscosts"{% endif %} title="{{ trans("Ceres::Template.itemShippingCosts") }}">{{ trans("Ceres::Template.itemShippingCosts") }}</a>
+                    <a href="{{ trans("Ceres::Template.linkShippingCosts") }}" target="_blank" title="{{ trans("Ceres::Template.itemShippingCosts") }}">{{ trans("Ceres::Template.itemShippingCosts") }}</a>
                 </p>
             </div>
 
