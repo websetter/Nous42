@@ -32,11 +32,12 @@
 <script>
     if('ontouchstart' in document.documentElement)
     {
-        document.body.classList.add("touch {{ lang }}");
+        document.body.classList.add("touch","{{ lang }}");
+
     }
     else
     {
-        document.body.classList.add("no-touch {{ lang }}");
+        document.body.classList.add("no-touch","{{ lang }}");
     }
 </script>
 <div id="vue-app">
