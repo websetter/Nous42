@@ -12,16 +12,15 @@
     {{ component( "Ceres::ItemList.Components.ItemsPerPage") }}
     {{ component( "Ceres::ItemList.Components.Pagination") }}
 
-
     {% set shippingCat = config("Ceres.global.shippingCostsCategoryId") %}
 
-    <div class="categoriegrid page-content container-max">
+    <div class="categoriegrid page-content container categoryItem cat-id-{{ category.id}}">
         {% if not ceresConfig.item.showCategoryImage %}
-            <div class="row ">
+            <div class="row">
                 <div class="col-xs-12">
                     <h1 class="category-title">{{ category.details[0].name }}</h1>
                     {% if ceresConfig.item.showCategoryDescription %}
-                        <div id="category-description-container" class="category-description m-b-1">{{ category.details[0].description | raw }}</div>
+                        <div id="category-description-container" class="category-description">{{ category.details[0].description | raw }}</div>
                     {% endif %}
                 </div>
             </div>
@@ -33,19 +32,13 @@
                     <div class="col-xs-12">
                         <div class="list-wrapper">
                             <item-list-sorting template="#vue-item-list-sorting" :sorting-list="{{ searchOptions.sorting | json_encode }}" :default-sorting="{{ searchOptions.defaultSorting | json_encode }}"></item-list-sorting>
-                            {% set overrideSearchFilters = LayoutContainer.show("Ceres::Search.Filter", facets ) %}
-                            {% if overrideSearchFilters | trim is empty %}
-                                <item-filter-list :facet-data="{{ facets | json_encode }}"></item-filter-list>
-                            {% else %}
-                                {{ overrideSearchFilters }}
-                            {% endif %}
+                        <items-per-page
+                                template="#vue-items-per-page"
+                                :pagination-values="{{ searchOptions.itemsPerPage | json_encode }}"></items-per-page>
                         </div>
                     </div>
                 </div>
             </div>
-
-            {# TAGS #}
-            <item-filter-tag-list></item-filter-tag-list>
         </div>
 
         {% if ceresConfig.pagination.position in ['top', 'top_bottom'] %}
@@ -60,20 +53,7 @@
         {% endif %}
 
         <div class="row">
-
-            {% if ceresConfig.header.showNavBars == "side" or ceresConfig.header.showNavBars == "both" %}
-                <div class="col-xs-3 hidden-md-down">
-                    <div class="sidebar-categories">
-                        <div class="category-title">{{ trans("Ceres::Template.itemCategories") }}</div>
-                        {{ include('Ceres::PageDesign.Partials.Header.SideNavigation.twig') }}
-                    </div>
-
-                    {{ LayoutContainer.show("Ceres::CategoryItem.SideNavBarBottom") }}
-                </div>
-
-            {% endif %}
-
-            <div class="col-xs-12 col-lg-{% if ceresConfig.header.showNavBars == "side" or ceresConfig.header.showNavBars == "both" %}9{% else %}12{% endif %}">
+            <div class="col-xs-12}">
 
                 <div id="twig-rendered-item-list" class="item-list-frame{% if ceresConfig.item.loadingAnimationType == "blur" %} blur-effect{% endif %}">
 
@@ -83,7 +63,7 @@
 
                     <ul class="product-list row grid" v-is-loading-watcher="$store.state.itemList.isLoading">
                         {% for item in itemList %}
-                            <li class="col-xs-12 col-sm-6 col-md-4 col-lg-{% if ceresConfig.header.showNavBars == "side" or ceresConfig.header.showNavBars == "both" %}4{% else %}3{% endif %}">
+                            <li class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                                 {% include "Nous42::Category.Item.Partials.CategoryListItem" with { 'item': item, 'shippingCat': shippingCat } %}
                             </li>
                         {% endfor %}
