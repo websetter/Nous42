@@ -1,8 +1,8 @@
 <script type="x/template" id="vue-item-search">
     <div class="search-box-inner">
         <div class="search-box-shadow-frame">
-            <input type="search" class="search-input" v-model="currentSearchString" @keyup.enter="search()" placeholder="{{ trans('Ceres::Template.itemSearch') }}"
-                   {% if not services.template.isSearch() %}autofocus{% endif %}>
+            <input type="search" class="search-input" v-model="currentSearchString" @keyup.enter="search()" placeholder="{{ trans('Nous42::Template.itemSearch') }}"
+                   >
             <button class="search-submit" type="submit" @click="search()">
                 <i class="fa fa-search sm-up"></i>
             </button>
