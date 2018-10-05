@@ -54,9 +54,11 @@
             <span class="sr-only">Weiter</span>
           </a>
         </div>
-        
-    <div class="home container-max">
 
+    <div class="home container-max">
+      <div class="intro page-content">
+        {{ categorySlider.details.first.description | raw }}
+      </div>
 
         <div class="row">
             {% set homepageContainer4 = LayoutContainer.show("Ceres::Homepage.Container4") %}
