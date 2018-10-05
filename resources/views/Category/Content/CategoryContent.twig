@@ -10,9 +10,11 @@
 {% endblock %}
 
 {% block PageBody %}
-    <div class="container contentText">
+    <div class="container-max page-content">
       <div class="row">
+        <div class="col-xs-12">
       {% include category_template( category.id, lang, webstoreConfig.webstoreId ) ignore missing %}
+      </div>
     </div>
   </div>
 {% endblock %}
