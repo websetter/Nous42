@@ -94,7 +94,7 @@
         <!-- ITEM DETAILS -->
         <div class="thumb-content">
 
-          {% if not (category.id == 122) %}
+          {% if category.id != 122 %}
             <div class="thumb-meta">
                 {{ LayoutContainer.show("Ceres::CategoryItem.BeforePrices", item.data) }}
 
