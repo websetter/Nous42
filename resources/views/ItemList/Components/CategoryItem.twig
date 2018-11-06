@@ -14,7 +14,7 @@
 {% endif %}
 
 <script type="x/template" id="vue-category-item">
-    <article class="product-inner cat-{{ category.id}}">
+    <article class="product-inner">
         <div class="thumb-inner">
 
             <div class="thumb-background"></div>
@@ -45,7 +45,7 @@
 
             <!-- ITEM DETAILS -->
             <div class="thumb-content">
-                <div class="thumb-meta">
+                <div v-if="category.id !== 122" class="thumb-meta">
                     <div class="prices">
                         <div v-if="itemData.prices.rrp && itemData.prices.rrp.price.value > 0 && itemData.prices.rrp.price.value > itemData.prices.default.unitPrice.value" class="price-view-port">
                             <del class="crossprice">
