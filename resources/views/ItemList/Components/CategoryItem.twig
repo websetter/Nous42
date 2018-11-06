@@ -14,7 +14,7 @@
 {% endif %}
 
 <script type="x/template" id="vue-category-item">
-    <article class="product-inner">
+    <article class="product-inner cat-{{ category.id}}">
         <div class="thumb-inner">
 
             <div class="thumb-background"></div>
@@ -69,7 +69,7 @@
                 </a>
             </div>
             <!-- ./ITEM DETAILS  -->
-            <button class="btn btn-outline-primary" data-original-title="Artikel anzeigen"><a :href="itemData | itemURL" ><i class="fa fa-arrow-right fa-lg mobile-icon-right"></i><span>{{ trans("Ceres::Template.itemShowItem") }}</span></a></button>            
+            <button class="btn btn-outline-primary" data-original-title="Artikel anzeigen"><a :href="itemData | itemURL" ><i class="fa fa-arrow-right fa-lg mobile-icon-right"></i><span>{{ trans("Ceres::Template.itemShowItem") }}</span></a></button>
         </div>
     </article>
 </script>
