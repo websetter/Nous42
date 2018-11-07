@@ -38,6 +38,9 @@
     {{ component( "Ceres::Basket.Components.AddToBasket" ) }}
 
     <div id="homeSlider" class="carousel slide" data-ride="carousel">
+      <div class="sliderOverlay">
+        {% include category_template( 72, lang, webstoreConfig.webstoreId ) ignore missing %}
+      </div>
           <div class="carousel-inner">
             {% if categorySlider is not defined %}
               {% set categorySlider = services.category.get(72, lang) %}
