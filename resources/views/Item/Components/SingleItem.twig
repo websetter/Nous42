@@ -104,15 +104,14 @@
 
               <div class="cartBtn" v-if="currentVariation.variation.availability.id != 10">
               {{ AddToBasket.printVueComponent(
-                          "currentVariation",
-                          false,
-                          true,
-                          {
-                              "v-if": "currentVariation.filter.isSalable",
-                              "missing-order-properties":"variationMissingProperties",
-                              "is-variation-selected": "isVariationSelected"
-                          }
-                      ) }}
+                            "currentVariation",
+                            false,
+                            true,
+                            {
+                                ":missing-order-properties":"variationMissingProperties",
+                                ":is-variation-selected": "isVariationSelected && currentVariation.filter.isSalable"
+                            }
+                        ) }}
               </div>
               <slot name="AfterAddToBasket"></slot>
 
