@@ -55,7 +55,13 @@
             <li><a href="/nous42/zahlungsarten"><img src="https://cdn03.plentymarkets.com/jbguwzfozvwm/frontend/theme/img/paypal.png" alt="PayPal Logo"/></a></li>
             <li><a href="/nous42/versandkosten"><img src="https://cdn03.plentymarkets.com/jbguwzfozvwm/frontend/theme/img/dhl.png" alt="DHL Logo"/></a></li>
           </ul>
-          <p>&copy; {{ "now" | date("Y") }} nous42 | <a href="https://www.werk38.de/" title="WERK38 | Manufaktur für Print &amp; Web" >WERK38</a><br><small>{{ trans('Nous42::Template.footerColumnPreisHinweis') }} <a href="{{ trans('Nous42::Template.footerColumnPreisHinweisLink') }}" title="{{ trans('Nous42::Template.footerColumnPreisHinweis2') }}">{{ trans('Nous42::Template.footerColumnPreisHinweis2') }}</a></small></p>
+          <p>&copy; {{ "now" | date("Y") }} nous42 | <a href="https://www.werk38.de/" title="WERK38 | Manufaktur für Print &amp; Web" >WERK38</a><br>
+            <small>{{ trans('Nous42::Template.footerColumnPreisHinweis') }}
+              <a href="{{ trans('Nous42::Template.footerColumnPreisHinweisLink') }}" title="{{ trans('Nous42::Template.footerColumnPreisHinweis2') }}">
+                {{ trans('Nous42::Template.footerColumnPreisHinweis2') }}
+              </a>
+            </small>
+          </p>
       </div>
     </div>
   </div>
