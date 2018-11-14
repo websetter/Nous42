@@ -48,7 +48,7 @@
 
             <!-- ITEM DETAILS -->
             <div class="thumb-content">
-                <div class="thumb-meta ">
+                <div  v-if="itemData.defaultCategories[0].id != 122" class="thumb-meta ">
                     <div class="prices">
                         <div v-if="itemData.prices.rrp && itemData.prices.rrp.price.value > 0 && itemData.prices.rrp.price.value > itemData.prices.default.unitPrice.value" class="price-view-port">
                             <del class="crossprice">
