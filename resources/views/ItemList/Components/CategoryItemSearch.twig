@@ -14,7 +14,8 @@
 {% endif %}
 
 <script type="x/template" id="vue-category-item">
-    <article class="product-inner">
+    <article class="product-inner ">
+    <p class="hidden">{{ itemData | json_encode }}</p>
         <div class="thumb-inner">
 
             <div class="thumb-background"></div>
