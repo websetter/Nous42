@@ -15,11 +15,11 @@
 
     {% set shippingCat = config("Ceres.global.shippingCostsCategoryId") %}
 
-    <div class="categoriegrid page-content container categoryItem cat-id-{{ category.id}}">
+    <div class="categoriegrid page-content container categoryItem">
         {% if not ceresConfig.item.showCategoryImage %}
             <div class="row">
                 <div class="col-xs-12">
-                    <h1 class="category-title test-cat-id-{{ category.id}}">{{ category.details[0].name }}</h1>
+                    <h1 class="category-title">{{ category.details[0].name }}</h1>
                     {% if ceresConfig.item.showCategoryDescription %}
                         <div id="category-description-container" class="category-description">{{ category.details[0].description | raw }}</div>
                     {% endif %}
@@ -92,7 +92,7 @@
 {% endblock %}
 
 {% block PartialHead %}
-    <script type="application/ld+json">{"@context": "http://schema.org","@type": "WebSite","url": "{{ webstoreConfig.domainSsl }}","potentialAction":{"@type": "SearchAction","target": "{{ domainSsl }}/search?query={search_term}","query-input": "required name=search_term"}}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org","@type": "WebSite","url": "{{ webstoreConfig.domainSsl }}","potentialAction":{"@type": "SearchAction","target": "{{ domainSsl }}/search?query={search_term}","query-input": "required name=search_term"}}</script>
 
     {% if currentPage-1 > 0 %}
         <link rel="prev" href="{{ webstoreConfig.domainSsl }}?{{ query | merge({'page' : currentPage-1 }) | url_encode }}" />

@@ -2,10 +2,11 @@
 
 {% block PageBody %}
 
-    {{ component( "Nous42::ItemList.Components.ItemList" ) }}
-    {{ component( "Nous42::ItemList.Components.CategoryItem" ) }}
+    {{ component( "Nous42::ItemList.Components.ItemListSearch" ) }}
+    {{ component( "Nous42::ItemList.Components.CategoryItemSearch" ) }}
     {{ component( "Ceres::ItemList.Components.ItemListSorting" ) }}
     {{ component( "Ceres::ItemList.Components.Pagination" ) }}
+    {{ component( "Ceres::ItemList.Components.ItemsPerPage" ) }}
     {{ component( "Ceres::ItemList.Components.Filter.ItemFilterList") }}
     {{ component( "Ceres::ItemList.Components.Filter.ItemFilterTagList") }}
 
@@ -22,6 +23,9 @@
                     <div class="col-xs-12">
                         <div class="list-wrapper">
                             <item-list-sorting template="#vue-item-list-sorting" :sorting-list="{{ searchOptions.sorting | json_encode }}" :default-sorting="{{ searchOptions.defaultSorting | json_encode }}"></item-list-sorting>
+                            <items-per-page
+                                template="#vue-items-per-page"
+                                :pagination-values="{{ searchOptions.itemsPerPage | json_encode }}"></items-per-page>
                             {% set overrideSearchFilters = LayoutContainer.show("Ceres::Search.Filter", facets) %}
                             {% if overrideSearchFilters | trim is empty %}
                                 <item-filter-list :facet-data="{{ facets | json_encode }}"></item-filter-list>
@@ -71,7 +75,7 @@
 {% endblock %}
 
 {% block PartialHead %}
-<script type="application/ld+json">{"@context": "http://schema.org","@type": "WebSite","url": "{{ webstoreConfig.domainSsl }}","potentialAction":{"@type": "SearchAction","target": "{{ webstoreConfig.domainSsl }}/search?query={search_term}","query-input": "required name=search_term"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org","@type": "WebSite","url": "{{ webstoreConfig.domainSsl }}","potentialAction":{"@type": "SearchAction","target": "{{ webstoreConfig.domainSsl }}/search?query={search_term}","query-input": "required name=search_term"}}</script>
     {% if isSearch %}
         <title>{{ trans("Ceres::Template.itemSearchResults") }} {{ searchString }} | {{ trans("Ceres::Template.headerCompanyName") }}</title>
     {% endif %}
