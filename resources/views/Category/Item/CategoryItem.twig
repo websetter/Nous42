@@ -92,9 +92,13 @@
         {% endif %}
     </div>
 
+    {% if ceresConfig.item.showCategoryDescription %}
+        <div id="category-description-container-2" class="category-description">{{ category.details[0].description2 | raw }}</div>
+    {% endif %}
+
 {% endblock %}
 
-    <div id="category-description-container-2" class="category-description">{{ category.details[0].description2 | raw }}</div>
+
 
 {% block PartialHead %}
     <script type="application/ld+json">{"@context": "https://schema.org","@type": "WebSite","url": "{{ webstoreConfig.domainSsl }}","potentialAction":{"@type": "SearchAction","target": "{{ domainSsl }}/search?query={search_term}","query-input": "required name=search_term"}}</script>
