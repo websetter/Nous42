@@ -183,6 +183,11 @@
     {% include scriptTemplate.path ignore missing with scriptTemplate.params %}
 {% endfor %}
 
+{% if services.template.getCurrentTemplate() == 'tpl.category.item' or services.template.getCurrentTemplate() == 'tpl.search' %}
+	<script src="https://cdn03.plentymarkets.com/jbguwzfozvwm/frontend/theme/readmore.js"></script>
+{% endif %}
+
+
 {{ LayoutContainer.show("Ceres::Script.AfterScriptsLoaded") }}
 
 {{ get_filtered_tags() }}
