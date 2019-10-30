@@ -74,6 +74,15 @@
     </div>
 </header>
 
+{% set aktion = services.category.get(123, lang) %}
+
+{% if categorySlider.details.first.description | trim is not empty %}
+<div id="aktionBanner">
+  {{ categorySlider.details.first.description | raw }}
+</div>
+{% endif %}
+
+
 
 {% if category.linklist == "Y" %}
     {% set initialCategory = { id: category.id } %}
