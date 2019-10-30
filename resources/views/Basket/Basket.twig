@@ -29,9 +29,9 @@
 
                     {% set aktion = services.category.get(123, lang) %}
 
-                    {% if categorySlider.details.first.description2 | trim is not empty %}
+                    {% if aktion.details.first.description2 | trim is not empty %}
                     <div id="aktionBannerBig">
-                      {{ categorySlider.details.first.description2 | raw }}
+                      {{ aktion.details.first.description2 | raw }}
                     </div>
                     {% endif %}
                 </div>
