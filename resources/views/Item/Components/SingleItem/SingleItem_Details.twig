@@ -29,7 +29,7 @@
   </span>
 </span>
 
-<div class="base-price text-muted" v-if="currentVariation.unit">
+<div class="base-price text-muted" v-if="currentVariation.unit && !(currentVariation.unit.unitOfMeasurement === 'C62' && currentVariation.unit.content === 1)">
   <div>
     {{ trans("Ceres::Template.singleItemContent") }}
     <span>${ currentVariation.unit.content | numberFormat }</span>
@@ -65,7 +65,7 @@
     <span>{{ trans("Ceres::Template.singleItemNumber") }}: </span>
     <span>${ currentVariation.variation.number }</span>
   </p>
-  <p v-if="currentVariation.variation.availability" :class="'availability availability_' + currentVariation.variation.availability.id">
+  <p v-if="currentVariation.variation.availability" class="availability">
     <span>{{ trans("Ceres::Template.basketAvailability") }}: </span>
     <span> ${ currentVariation.variation.availability.names.name }</span>
   </p>
