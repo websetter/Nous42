@@ -38,6 +38,11 @@
             "key"           :"Nous42\\Containers\\Nous42ItemListContainer3",
             "name"          :"Third item list",
             "description"   :"Display a configurable list of items in your online store"
+        },
+        {
+          "key"           :"Nous42\\Containers\\Nous42Slider",
+          "name"          :"Slider",
+          "description"   :"Container for Slider Script"
         }
     ]
 }

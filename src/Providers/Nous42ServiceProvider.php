@@ -2,14 +2,12 @@
 
 namespace Nous42\Providers;
 
-use Ceres\Caching\NavigationCacheSettings;
-use Ceres\Caching\SideNavigationCacheSettings;
-use IO\Services\ContentCaching\Services\Container;
 use Plenty\Plugin\ServiceProvider;
 use Plenty\Plugin\Events\Dispatcher;
 use Plenty\Plugin\Templates\Twig;
 use IO\Helper\TemplateContainer;
 use IO\Extensions\Functions\Partial;
+use IO\Services\ItemSearch\Helper\ResultFieldTemplate;
 use Plenty\Plugin\ConfigRepository;
 
 
@@ -34,9 +32,6 @@ class Nous42ServiceProvider extends ServiceProvider
         // Override partials
         $dispatcher->listen('IO.init.templates', function (Partial $partial) use ($enabledOverrides)
         {
-            pluginApp(Container::class)->register('Nous42::PageDesign.Partials.Header.NavigationList.twig', NavigationCacheSettings::class);
-            pluginApp(Container::class)->register('Nous42::PageDesign.Partials.Header.SideNavigation.twig', SideNavigationCacheSettings::class);
-
             $partial->set('head', 'Ceres::PageDesign.Partials.Head');
             $partial->set('header', 'Ceres::PageDesign.Partials.Header.Header');
             $partial->set('page-design', 'Ceres::PageDesign.PageDesign');
@@ -76,12 +71,6 @@ class Nous42ServiceProvider extends ServiceProvider
             }, self::PRIORITY);
         }
 
-        // Override Contact
-        $dispatcher->listen('IO.tpl.contact', function (TemplateContainer $container) {
-          $container->setTemplate('Nous42::Customer.Contact');
-          return false;
-        });
-
         // Override template for content categories
         if (in_array("category_content", $enabledOverrides) || in_array("all", $enabledOverrides))
         {
@@ -93,8 +82,8 @@ class Nous42ServiceProvider extends ServiceProvider
             }, self::PRIORITY);
         }
 
-        // Override template for item categories
-        if (in_array("category_item", $enabledOverrides) || in_array("all", $enabledOverrides))
+        // Override category view
+        if (in_array("category_view", $enabledOverrides) || in_array("all", $enabledOverrides))
         {
 
             $dispatcher->listen('IO.tpl.category.item', function (TemplateContainer $container)
@@ -103,6 +92,16 @@ class Nous42ServiceProvider extends ServiceProvider
                 return false;
             }, self::PRIORITY);
         }
+        // Override search view
+      if (in_array("search", $enabledOverrides) || in_array("all", $enabledOverrides))
+      {
+
+          $dispatcher->listen('IO.tpl.search', function (TemplateContainer $container)
+          {
+              $container->setTemplate('Nous42::Category.Item.CategoryItem');
+              return false;
+          }, self::PRIORITY);
+      }
 
         // Override shopping cart
         if (in_array("basket", $enabledOverrides) || in_array("all", $enabledOverrides))
@@ -121,7 +120,7 @@ class Nous42ServiceProvider extends ServiceProvider
 
             $dispatcher->listen('IO.tpl.checkout', function (TemplateContainer $container)
             {
-                $container->setTemplate('Nous42::Checkout.Checkout');
+                $container->setTemplate('Nous42::Checkout.CheckoutView');
                 return false;
             }, self::PRIORITY);
         }
@@ -170,16 +169,6 @@ class Nous42ServiceProvider extends ServiceProvider
             }, self::PRIORITY);
         }
 
-        // Override category view
-        if (in_array("category_view", $enabledOverrides) || in_array("all", $enabledOverrides))
-        {
-
-            $dispatcher->listen('IO.tpl.search', function (TemplateContainer $container)
-            {
-                $container->setTemplate('Nous42::ItemList.ItemListView');
-                return false;
-            }, self::PRIORITY);
-        }
 
         // Override my account
         if (in_array("my_account", $enabledOverrides) || in_array("all", $enabledOverrides))
@@ -187,7 +176,51 @@ class Nous42ServiceProvider extends ServiceProvider
 
             $dispatcher->listen('IO.tpl.my-account', function (TemplateContainer $container)
             {
-                $container->setTemplate('Nous42::MyAccount.MyAccount');
+                $container->setTemplate('Nous42::MyAccount.MyAccountView');
+                return false;
+            }, self::PRIORITY);
+        }
+
+        // Override wish list
+        if (in_array("wish_list", $enabledOverrides) || in_array("all", $enabledOverrides))
+        {
+
+            $dispatcher->listen('IO.tpl.wish-list', function (TemplateContainer $container)
+            {
+                $container->setTemplate('Nous42::WishList.WishListView');
+                return false;
+            }, self::PRIORITY);
+        }
+
+        // Override contact page
+        if (in_array("contact", $enabledOverrides) || in_array("all", $enabledOverrides))
+        {
+
+            $dispatcher->listen('IO.tpl.contact', function (TemplateContainer $container)
+            {
+                $container->setTemplate('Nous42::Customer.Contact');
+                return false;
+            }, self::PRIORITY);
+        }
+
+        // Override order return view
+        if (in_array("order_return", $enabledOverrides) || in_array("all", $enabledOverrides))
+        {
+
+            $dispatcher->listen('IO.tpl.order.return', function (TemplateContainer $container)
+            {
+                $container->setTemplate('Nous42::OrderReturn.OrderReturnView');
+                return false;
+            }, self::PRIORITY);
+        }
+
+        // Override order return confirmation
+        if (in_array("order_return_confirmation", $enabledOverrides) || in_array("all", $enabledOverrides))
+        {
+
+            $dispatcher->listen('IO.tpl.order.return.confirmation', function (TemplateContainer $container)
+            {
+                $container->setTemplate('Nous42::OrderReturn.OrderReturnConfirmation');
                 return false;
             }, self::PRIORITY);
         }
@@ -199,6 +232,17 @@ class Nous42ServiceProvider extends ServiceProvider
             $dispatcher->listen('IO.tpl.cancellation-rights', function (TemplateContainer $container)
             {
                 $container->setTemplate('Nous42::StaticPages.CancellationRights');
+                return false;
+            }, self::PRIORITY);
+        }
+
+        // Override cancellation form
+        if (in_array("cancellation_form", $enabledOverrides) || in_array("all", $enabledOverrides))
+        {
+
+            $dispatcher->listen('IO.tpl.cancellation-form', function (TemplateContainer $container)
+            {
+                $container->setTemplate('Nous42::StaticPages.CancellationForm');
                 return false;
             }, self::PRIORITY);
         }
@@ -248,14 +292,72 @@ class Nous42ServiceProvider extends ServiceProvider
         }
 
         // Override page not found page
-        if (in_array("page_not_found", $enabledOverrides) || in_array("all", $enabledOverrides))
-        {
+      if (in_array("page_not_found", $enabledOverrides) || in_array("all", $enabledOverrides))
+      {
 
-            $dispatcher->listen('IO.tpl.page-not-found', function (TemplateContainer $container)
-            {
-                $container->setTemplate('Nous42::StaticPages.PageNotFound');
-                return false;
-            }, self::PRIORITY);
-        }
-    }
+          $dispatcher->listen('IO.tpl.page-not-found', function (TemplateContainer $container)
+          {
+              $container->setTemplate('Nous42::StaticPages.PageNotFound');
+              return false;
+          }, self::PRIORITY);
+      }
+
+      // Override newsletter opt-out page
+      if (in_array("newsletter_opt_out", $enabledOverrides) || in_array("all", $enabledOverrides))
+      {
+
+          $dispatcher->listen('IO.tpl.newsletter.opt-out', function (TemplateContainer $container)
+          {
+              $container->setTemplate('Nous42::Newsletter.NewsletterOptOut');
+              return false;
+          }, self::PRIORITY);
+      }
+
+      $enabledResultFields = [];
+
+      if(!empty($config->get("Nous42.result_fields.override")))
+      {
+          $enabledResultFields = explode(", ", $config->get("Nous42.result_fields.override"));
+      }
+
+      if(!empty($enabledResultFields))
+      {
+          $dispatcher->listen( 'IO.ResultFields.*', function(ResultFieldTemplate $templateContainer) use ($enabledResultFields)
+          {
+              $templatesToOverride = [];
+
+              // Override list item result fields
+              if (in_array("list_item", $enabledResultFields) || in_array("all", $enabledResultFields))
+              {
+                  $templatesToOverride[ResultFieldTemplate::TEMPLATE_LIST_ITEM] = 'Nous42::ResultFields.ListItem';
+              }
+
+              // Override single item view result fields
+              if (in_array("single_item", $enabledResultFields) || in_array("all", $enabledResultFields))
+              {
+                  $templatesToOverride[ResultFieldTemplate::TEMPLATE_SINGLE_ITEM] = 'Nous42::ResultFields.SingleItem';
+              }
+
+              // Override basket item result fields
+              if (in_array("basket_item", $enabledResultFields) || in_array("all", $enabledResultFields))
+              {
+                  $templatesToOverride[ResultFieldTemplate::TEMPLATE_BASKET_ITEM] = 'Nous42::ResultFields.BasketItem';
+              }
+
+              // Override auto complete list item result fields
+              if (in_array("auto_complete_list_item", $enabledResultFields) || in_array("all", $enabledResultFields))
+              {
+                  $templatesToOverride[ResultFieldTemplate::TEMPLATE_AUTOCOMPLETE_ITEM_LIST] = 'Nous42::ResultFields.AutoCompleteListItem';
+              }
+
+              // Override category tree result fields
+              if (in_array("category_tree", $enabledResultFields) || in_array("all", $enabledResultFields))
+              {
+                  $templatesToOverride[ResultFieldTemplate::TEMPLATE_CATEGORY_TREE] = 'Nous42::ResultFields.CategoryTree';
+              }
+
+              $templateContainer->setTemplates($templatesToOverride);
+          }, self::PRIORITY);
+      }
+  }
 }

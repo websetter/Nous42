@@ -1,0 +1,64 @@
+{% import "Ceres::PageDesign.Macros.LayoutContainer" as LayoutContainer %}
+
+<header>
+    <div>
+        <div class="container">
+            <div class="row">
+                <ul id="controlsList" class="controls-list list-inline">
+                    <li class="list-inline-item control-user">
+                        <user-login-handler>
+                            <a data-toggle="modal">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                                <span class="hidden-xs-down">{{ trans("Ceres::Template.login") }}</span>
+                            </a>
+                            <span class="pipe"></span>
+                            <a data-toggle="modal">
+                                <i class="fa fa-user-plus" aria-hidden="true"></i>
+                                <span class="hidden-xs-down">{{ trans("Ceres::Template.loginRegister") }}</span>
+                            </a>
+                        </user-login-handler>
+                    </li>
+                    <li class="list-inline-item dropdown control-languages">
+                        <a data-toggle="collapse" href="#countrySettings" aria-expanded="false"
+                            aria-controls="countrySettings"
+                            data-parent="#controlsList">
+                            <i class="flag-icon flag-icon-{{ lang }}"></i>
+                        </a>
+                    </li>
+
+                    <li class="list-inline-item control-basket">
+                        <a v-toggle-basket-preview href="#" class="toggle-basket-preview">
+                            {% if config("Ceres.header.basket_values") != "sum" %}
+                                <span class="badge-right" v-basket-item-quantity="this.$store.state.basket.data.itemQuantity">0</span>
+                            {% endif %}
+
+                            <i v-waiting-animation="this.$store.state.basket.isBasketLoading" waiting-class="fa fa-refresh fa-spin" class="fa fa-shopping-cart" aria-hidden="true"></i>
+                            {% if config("Ceres.header.basket_values") != "quantity" %}
+                                <span class="badge" v-if="!$store.state.basket.showNetPrices" v-basket-item-sum="this.$store.state.basket.data.itemSum">0,00 {{ services.checkout.getCurrencyData()[currencyFormat] }}</span>
+                                <span class="badge" v-else v-cloak v-basket-item-sum="this.$store.state.basket.data.itemSumNet">0,00 {{ services.checkout.getCurrencyData()[currencyFormat] }}</span>
+                            {% endif %}
+                        </a>
+
+                        {% if config("Ceres.basket.preview_type") != "right" %}
+                            <basket-preview template="#vue-basket-preview-hover" :show-net-prices="{{ showNetPrices | json_encode }}"></basket-preview>
+                        {% endif %}
+                    </li>
+                </ul>
+                <div id="logo">
+                    <a href="{{ homepageURL }}">
+                      <img alt="NOUS42 Logo" src="https://cdn03.plentymarkets.com/jbguwzfozvwm/frontend/theme/logo_nous42.png" class="img-fluid"/>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% include "Nous42::PageDesign.Partials.Header.Navigation" %}
+    </div>
+</header>
+
+{% set aktion = services.category.get(123, lang) %}
+
+{% if aktion.details.first.description | trim is not empty %}
+<div id="aktionBanner">
+  {{ aktion.details.first.description | raw }}
+</div>
+{% endif %}
