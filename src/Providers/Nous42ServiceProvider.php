@@ -29,7 +29,7 @@ class Nous42ServiceProvider extends ServiceProvider
 
         $enabledOverrides = explode(", ", $config->get("Nous42.templates.override"));
 
-        $this->overrideTemplate( original:"Ceres::Checkout.Components.ShippingProfileSelect", override: "Nous42::Checkout.Components.ShippingProfileSelect");
+        $this->overrideTemplate("Ceres::Checkout.Components.ShippingProfileSelect","Nous42::Checkout.Components.ShippingProfileSelect");
 
         // Override partials
         $dispatcher->listen('IO.init.templates', function (Partial $partial) use ($enabledOverrides)
