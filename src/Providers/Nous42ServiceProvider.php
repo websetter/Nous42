@@ -16,23 +16,8 @@ use Plenty\Modules\Webshop\Template\Providers\TemplateServiceProvider;
  * @package Nous42\Providers
  */
 
-class Nous42TemplateServiceProvider extends TemplateServiceProvider
-{
-    const PRIORITY = 0;
 
-    public function register()
-    {
-
-    }
-
-    public function boot()
-    {
-        $this->overrideTemplate(original:"Ceres::Checkout.Components.ShippingProfileSelect", override:"Nous42::Checkout.Components.ShippingProfileSelect");
-
-    }
-}
-
-class Nous42ServiceProvider extends ServiceProvider
+class Nous42ServiceProvider extends TemplateServiceProvider
 {
     const PRIORITY = 0;
 
@@ -46,6 +31,7 @@ class Nous42ServiceProvider extends ServiceProvider
 
         $enabledOverrides = explode(", ", $config->get("Nous42.templates.override"));
 
+        $this->overrideTemplate("Ceres::Checkout.Components.ShippingProfileSelect", "Nous42::Checkout.Components.ShippingProfileSelect");
 
 
         // Override partials
