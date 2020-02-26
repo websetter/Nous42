@@ -16,17 +16,7 @@ use Plenty\Modules\Webshop\Template\Providers\TemplateServiceProvider;
  * @package Nous42\Providers
  */
 
-class Nous42ServiceProvider extends TemplateServiceProvider
-{
-  public function register()
-   {
 
-   }
-  public function boot()
-  {
-    $this->overrideTemplate("Ceres::PageDesign.Partials.Header.Navigation", "Nous42::PageDesign.Partials.Header.Navigation");
-  }
-}
 
 class Nous42ServiceProvider extends ServiceProvider
 {
