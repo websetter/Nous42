@@ -18,6 +18,10 @@ use Plenty\Modules\Webshop\Template\Providers\TemplateServiceProvider;
 
 class Nous42ServiceProvider extends TemplateServiceProvider
 {
+  public function register()
+   {
+
+   }
   public function boot()
   {
     $this->overrideTemplate("Ceres::Checkout.Components.ShippingProfileSelect","Nous42::Checkout.Components.ShippingProfileSelect");
