@@ -71,6 +71,13 @@
                         <span v-if="item.variation.mayShowUnitPrice">| ${ item.prices.default.basePrice }</span>
                     </div>
                 </div>
+                <div v-else class="thumb-meta">
+                    <div class="prices">
+                        <div class="price">
+                              {{ trans("Nous42::Template.onDemandShort") }}
+                        </div>
+                    </div>
+                </div>
                 <a :href="item | itemURL" class="thumb-title small">
                     ${ item | itemName }
                 </a>
