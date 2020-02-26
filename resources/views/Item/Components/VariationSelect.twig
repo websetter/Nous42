@@ -1,18 +1,26 @@
 <script type="x/template" id="vue-variation-select">
     <div>
-        <div v-for="(attribute, attributeId) in attributes">
-            <div class="input-unit">
-                <select class="custom-select text-gray-dark" v-model="selectedAttributes[attributeId]" @change="onSelectionChange(selectedAttributes[attributeId])">
-                        <option :value="null">{{ trans("Ceres::Template.singleItemPleaseSelect") }}</option>
-                        <option
-                            v-for="(attributeValue, attributeValueId) in attribute.values"
-                            :value="attributeValueId"
-                            :disabled="!isEnabled(attributeId, attributeValueId)">
-                            ${ attributeValue }
-                        </option>
-                </select>
-                <label>${ attribute.name }</label>
-            </div>
-        </div>
+      <div v-if="attributes.length || (Object.keys(possibleUnits).length > 1 && isContentVisible)">
+          <div v-for="attribute in attributes">
+              <div class="input-unit" ref="attributesContaner">
+                <select class="custom-select" @change="selectAttribute(attribute.attributeId, $event.target.value)">
+                      <option :value="-1" v-if="addPleaseSelectOption || !hasSelection">{{ trans("Ceres::Template.singleItemPleaseSelect") }}</option>
+                      <option :value="null" v-if="hasEmptyOption || selectedAttributes[attribute.attributeId] === null" :selected="selectedAttributes[attribute.attributeId] === null">{{ trans("Ceres::Template.singleItemNoSelection") }}</option>
+                      <option
+                          v-for="value in attribute.values"
+                          :value="value.attributeValueId"
+                          :selected="value.attributeValueId === selectedAttributes[attribute.attributeId]">
+                          <template v-if="isAttributeSelectionValid(attribute.attributeId, value.attributeValueId)">
+                              ${ value.name }
+                          </template>
+                          <template v-else>
+                              {{ trans("Ceres::Template.singleItemInvalidAttribute", { "name": "${ value.name }" }) }}
+                          </template>
+                      </option>
+                  </select>
+                  <label v-tooltip="isTextCut(attribute.name)" data-toggle="tooltip" data-placement="top" :title="attribute.name">${ attribute.name }</label>
+              </div>
+          </div>
+      </div>
     </div>
 </script>
