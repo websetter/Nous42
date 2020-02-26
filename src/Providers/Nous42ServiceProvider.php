@@ -9,7 +9,7 @@ use IO\Helper\TemplateContainer;
 use IO\Extensions\Functions\Partial;
 use IO\Services\ItemSearch\Helper\ResultFieldTemplate;
 use Plenty\Plugin\ConfigRepository;
-
+use Plenty\Modules\Webshop\Template\Providers\TemplateServiceProvider;
 
 /**
  * Class Nous42ServiceProvider
@@ -28,6 +28,8 @@ class Nous42ServiceProvider extends ServiceProvider
     {
 
         $enabledOverrides = explode(", ", $config->get("Nous42.templates.override"));
+
+        $this->overrideTemplate( original:"Ceres::Checkout.Components.ShippingProfileSelect", override: "Nous42::Checkout.Components.ShippingProfileSelect");
 
         // Override partials
         $dispatcher->listen('IO.init.templates', function (Partial $partial) use ($enabledOverrides)
