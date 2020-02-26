@@ -16,7 +16,7 @@ use Plenty\Modules\Webshop\Template\Providers\TemplateServiceProvider;
  * @package Nous42\Providers
  */
 
-class Nous42ServiceProvider extends TemplateServiceProvider
+class Nous42TemplateServiceProvider extends TemplateServiceProvider
 {
     const PRIORITY = 0;
 
