@@ -2,7 +2,7 @@
 {% import "Ceres::PageDesign.Macros.ItemName" as ItemName %}
 
 {% set lang = services.sessionStorage.getLang() %}
-{% set startseite = services.category.get(72, lang) %}
+{% set startseite = services.category.get(127, lang) %}
 {{ component( "Ceres::ItemList.Components.ItemList") }}
 {{ component( "Ceres::ItemList.Components.CategoryImageCarousel") }}
 {{ component( "Ceres::Basket.Components.AddToBasket" ) }}
