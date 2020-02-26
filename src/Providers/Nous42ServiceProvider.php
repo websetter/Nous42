@@ -27,7 +27,7 @@ class Nous42ServiceProvider extends TemplateServiceProvider
 
     public function boot()
     {
-        $this->overrideTemplate("Ceres::PageDesign.Partials.Header.Navigation", "Nous42::PageDesign.Partials.Header.Navigation");
+        $this->overrideTemplate("Ceres::Checkout.Components.ShippingProfileSelect", "Nous42::Checkout.Components.ShippingProfileSelect");
     }
 }
 
