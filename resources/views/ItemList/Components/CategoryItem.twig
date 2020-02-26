@@ -49,7 +49,7 @@
             <!-- ITEM DETAILS -->
             <slot name="item-details">
             <div class="thumb-content">
-                <div v-if="category.id != 122" class="thumb-meta">
+                <div class="thumb-meta" v-if="item.prices.default.unitPrice > 0">
                     <div class="prices">
                         <div v-if="item.prices.rrp && item.prices.rrp.price.value > 0 && item.prices.rrp.price.value > item.prices.default.unitPrice.value" class="price-view-port">
                           <del class="crossprice" v-if="item.prices.specialOffer">
