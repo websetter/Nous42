@@ -74,10 +74,8 @@
                     ${ item | itemName }
                 </a>
             </div>
-            <button type="button" class="btn btn-outline-primary" @click="directToItem()">
-                    <i class="fa fa-arrow-right fa-lg mobile-icon-right"></i>
-                    <span class="mobile-text-only">{{ trans("Ceres::Template.itemShowItem") }}</span>
-                </button>
+            {{ AddToBasket.printVueComponent( "item", false, false, { ":has-price": "item | hasItemDefaultPrice" }, "urlWithVariationId" ) }}
+
             </slot>
             <!-- ./ITEM DETAILS  -->
         </div>
