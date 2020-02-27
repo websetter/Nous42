@@ -75,10 +75,11 @@
                 <a :href="item | itemURL" :title="item | itemName" class="thumb-title small">
                     ${ item | itemName }
                 </a>
+                <div class="basket-btn">
+                    {{ AddToBasket.printVueComponent( "item", true, false, { ":has-price": "item | hasItemDefaultPrice" }, "urlWithVariationId" ) }}
+                </div>
             </div>
-            <div class="basket-btn">
-                {{ AddToBasket.printVueComponent( "item", true, false, { ":has-price": "item | hasItemDefaultPrice" }, "urlWithVariationId" ) }}
-              </div>
+
             </slot>
             <!-- ./ITEM DETAILS  -->
         </div>
