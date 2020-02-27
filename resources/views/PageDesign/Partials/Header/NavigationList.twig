@@ -4,9 +4,9 @@
 
 <ul class="mainmenu">
   {% if lang == "de" %}
-    <li><a href="/"><span class="fa fa-home"></span><span class="hidden-lg">Startseite</span></a></li>
+    <li><a href="/"><span class="fa fa-home hidden-md-down"></span><span class="hidden-lg-up">Startseite</span></a></li>
   {% else %}
-  <li><a href="/en"><span class="fa fa-home"></span><span class="hidden-lg">Home</span></a></li>
+  <li><a href="/en"><span class="fa fa-home hidden-md-down"></span><span class="hidden-lg-up">Home</span></a></li>
   {% endif %}
     {{ Tree.get_menu(categoryBreadcrumbs, categories, "", 0) }}
 </ul>
