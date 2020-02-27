@@ -74,7 +74,10 @@
                     ${ item | itemName }
                 </a>
             </div>
-            <a :href="item.texts.urlPath + '_' + item.item.id" :title="item | itemName" class="btn btn-outline-primary"><i class="fa fa-arrow-right fa-lg mobile-icon-right"></i><span>{{ trans("Ceres::Template.itemShowItem") }}</span></a>
+            <button type="button" class="btn btn-outline-primary" @click="directToItem()">
+                    <i class="fa fa-arrow-right fa-lg mobile-icon-right"></i>
+                    <span class="mobile-text-only">{{ trans("Ceres::Template.itemShowItem") }}</span>
+                </button>
             </slot>
             <!-- ./ITEM DETAILS  -->
         </div>
