@@ -3,10 +3,11 @@
     {% set urlNow = currentScopeUrl %}
       {% for category in categories %}
       
+
           {% if urls.includeLanguage %}
-                {% set urlNow = "/" ~ category.details[0].lang ~  "/" ~ category.details[0].nameUrl %}
+                {% set urlNow = category.details[0].lang ~  "/" ~ currentScopeUrl "/" ~ category.details[0].nameUrl %}
           {% else %}
-              {% set urlNow = "/" ~ category.details[0].nameUrl %}
+              {% set urlNow = currentScopeUrl ~ "/" ~ category.details[0].nameUrl %}
           {% endif %}
 
           {% if category.details[0] %}
