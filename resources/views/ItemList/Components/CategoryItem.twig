@@ -2,6 +2,8 @@
 {{ component( "Ceres::ItemList.Components.CategoryImageCarousel") }}
 {{ component( "Ceres::ItemList.Components.ItemStoreSpecial" ) }}
 
+{% import "Ceres::Basket.Macros.AddToBasket" as AddToBasket %}
+
 {% if enableCarousel is not defined %}
     {% if config("Ceres.item.enable_image_carousel") == "true" %}
         {% set enableCarousel = "true" %}
