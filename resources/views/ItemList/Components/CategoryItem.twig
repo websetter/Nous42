@@ -13,27 +13,18 @@
 <script type="x/template" id="vue-category-item">
     <article class="product-inner">
         <div class="thumb-inner">
-
-            <div class="thumb-background"></div>
-
             <div class="thumb-image">
                 <div class="square-container">
                     <div class="square-inner main-image">
-                    <slot name="item-image">
-                        <category-image-carousel template="#vue-category-image-carousel"
-                                                :image-urls-data="item.images | itemImages(urlSecondPreview)"
-                                                :alt-text="item | itemName"
-                                                :title-text="item | itemName"
-                                                :item-url="item | itemURL(urlWithVariationId)"
-                                                :enable-carousel="{{ enableCarousel }}"
-                                                :disable-carousel-on-mobile="disableCarouselOnMobile"
-                                                ref="categoryImageCarousel">
-                        </category-image-carousel>
-                    </slot>
+                    <a :href="item | itemURL" :title="item | itemName">
+                      <img
+                        :src="item.images.all[0].urlSecondPreview"
+                        :alt-text="item | itemName"
+                        :title-text="item | itemName">
+                    </a>
                     </div>
                 </div>
             </div>
-
             <!-- STORE SPECIALS -->
             <slot name="store-special">
                 <item-store-special v-if="storeSpecial || item.variation.bundleType == 'bundle'"
@@ -78,13 +69,13 @@
                         </div>
                     </div>
                 </div>
-                <a :href="item | itemURL" class="thumb-title small">
+                <a :href="item | itemURL" :title="item | itemName" class="thumb-title small">
                     ${ item | itemName }
                 </a>
             </div>
 
             <button class="btn btn-outline-primary" data-original-title="Artikel anzeigen">
-              <a :href="item | itemURL" ><i class="fa fa-arrow-right fa-lg mobile-icon-right"></i><span>{{ trans("Ceres::Template.itemShowItem") }}</span></a>
+              <a :href="item | itemURL" :title="item | itemName" ><i class="fa fa-arrow-right fa-lg mobile-icon-right"></i><span>{{ trans("Ceres::Template.itemShowItem") }}</span></a>
             </button>
             </slot>
             <!-- ./ITEM DETAILS  -->
