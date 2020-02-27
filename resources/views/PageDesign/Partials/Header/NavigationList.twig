@@ -8,5 +8,5 @@
   {% else %}
   <li><a href="/en"><span class="fa fa-home"></span></a></li>
   {% endif %}
-    {{ Tree.get_nav_bar(categories, "") }}
+    {{ Tree.get_menu(categoryBreadcrumbs, categories, "", 0) }}
 </ul>

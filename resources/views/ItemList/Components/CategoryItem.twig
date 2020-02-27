@@ -52,12 +52,12 @@
                 <div class="thumb-meta" v-if="item.prices.default.unitPrice.value > 0">
                     <div class="prices">
                         <div v-if="item.prices.rrp && item.prices.rrp.price.value > 0 && item.prices.rrp.price.value > item.prices.default.unitPrice.value" class="price-view-port">
-                          <del class="crossprice" v-if="item.prices.specialOffer">
-                               ${ item.prices.default.unitPrice.formatted }
-                           </del>
-                           <del class="crossprice" v-else>
-                               ${ item.prices.rrp.unitPrice.formatted }
-                           </del>
+                          <span class="crossprice" v-if="item.prices.specialOffer">
+                               {{ trans("Nous42::Template.instead") }} ${ item.prices.default.unitPrice.formatted }
+                           </span>
+                           <span class="crossprice" v-else>
+                               {{ trans("Nous42::Template.instead") }} ${ item.prices.rrp.unitPrice.formatted }
+                           </span>
                         </div>
 
                         <div class="price">
