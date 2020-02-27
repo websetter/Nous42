@@ -41,20 +41,20 @@
             <slot name="item-details">
             <div class="thumb-content">
                 <div class="thumb-meta" v-if="item.prices.default.unitPrice.value > 0">
-                    <div class="prices">
-                        <p v-if="item.prices.rrp && item.prices.rrp.price.value > 0 && item.prices.rrp.price.value > item.prices.default.unitPrice.value" class="price-view-port">
+                    <p class="prices">
+                        <span v-if="item.prices.rrp && item.prices.rrp.price.value > 0 && item.prices.rrp.price.value > item.prices.default.unitPrice.value" class="price-view-port">
                           <span class="crossprice" v-if="item.prices.specialOffer">
                                {{ trans("Nous42::Template.instead") }} ${ item.prices.default.unitPrice.formatted }
                            </span>
                            <span class="crossprice" v-else>
                                {{ trans("Nous42::Template.instead") }} ${ item.prices.rrp.unitPrice.formatted }
                            </span>
-                        </p>
+                        </span>
 
-                        <p class="price">
+                        <span class="price">
                             ${ item.prices.default.unitPrice.formatted | specialOffer(item.prices, "unitPrice", "formatted") } *
-                        </p>
-                    </div>
+                        </span>
+                    </p>
 
                     <p class="category-unit-price" v-if="!(item.unit.unitOfMeasurement === 'C62' && item.unit.content === 1)">
                         <span>${ item.unit.content }</span>
@@ -63,11 +63,11 @@
                     </p>
                 </div>
                 <div v-else class="thumb-meta">
-                    <div class="prices">
-                        <p class="price">
+                    <p class="prices">
+                        <span class="price">
                               {{ trans("Nous42::Template.onDemandShort") }}
-                        </p>
-                    </div>
+                        </span>
+                    </p>
                 </div>
                 <a :href="item | itemURL" :title="item | itemName" class="thumb-title small">
                     ${ item | itemName }
