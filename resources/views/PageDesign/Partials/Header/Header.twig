@@ -18,18 +18,6 @@
 
 
 {% set scriptId = uid() %}
-<script id="{{ scriptId }}">
-    var vueApp = document.getElementById("vue-app");
-    var pageHeader = document.getElementById("pageHeader");
-
-    if ( !!vueApp && !!pageHeader )
-    {
-        vueApp.style.marginTop = pageHeader.getBoundingClientRect().height + 'px';
-    }
-
-    var scriptElement = document.getElementById("{{ scriptId }}");
-    scriptElement.parentElement.removeChild(scriptElement);
-</script>
 
 <div>
     {% if category.linklist == "Y" %}
