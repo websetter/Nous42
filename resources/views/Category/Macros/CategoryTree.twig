@@ -67,7 +67,7 @@
                   <span class="d-lg-none nav-direction" data-toggle="collapse" href="#navDropdown{{ counter }}" aria-expanded="false">
                       <i class="fa fa-caret-down" aria-hidden="true"></i>
                   </span>
-                      <ul d="navDropdown{{ counter }}" class="collapse">
+                      <ul id="navDropdown{{ counter }}" class="collapse">
                           {{ sidemenu.get_menu(breadcrumbs, category.children, urlNow, counter + 1) }}
                       </ul>
                   {% endif %}
