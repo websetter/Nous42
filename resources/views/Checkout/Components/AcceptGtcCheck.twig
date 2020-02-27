@@ -3,7 +3,7 @@
         <input v-if="!hideCheckbox" class="form-check-input" type="checkbox" value="" :id="'gtc-accept' + _uid" v-model="isChecked">
 
         <label v-if="!customText.length" class="form-check-label" :for="'gtc-accept' + _uid">
-            {% autoescape false %}              
+            {% autoescape false %}
                 {% set cancellationContent %}<!--
                 --><a class="text-appearance" href="{{ urls.cancellationRights }}" target="_blank">
                     <strong>{{ trans("Ceres::Template.checkoutCancellationRight", {"hyphen": "&shy;"}) }}</strong>
@@ -16,7 +16,7 @@
                 </a><!--
             -->{% endset %}
 
-                {{ trans("Ceres::Template.checkoutChooseOur", {"cancellation": cancellationContent, "policy": policyContent}) }}<!--
+                {{ trans("Nous42::Template.checkoutChooseOur", {"cancellation": cancellationContent, "policy": policyContent}) }}<!--
                 --><template v-if="isRequired && !hideCheckbox">
                     <sup>*</sup>
                 </template>
