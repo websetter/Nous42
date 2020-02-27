@@ -1,15 +1,13 @@
 {{ component( "Ceres::Item.Components.QuantityInput" ) }}
 
-<a :href="item | itemURL" :title="item | itemName" class="btn btn-outline-primary">
-  <i class="fa fa-arrow-right fa-lg mobile-icon-right"></i><span>{{ trans("Ceres::Template.itemShowItem") }}</span></a>
 
 <script type="x/template" id="vue-add-to-basket">
     <div>
-        <div :class="{'no-pointer-events': waiting}"  v-if="!showQuantity && useLargeScale && canBeAddedToBasket" @click="directToItem()">
+        <div class="btn btn-outline-primary" :class="{'no-pointer-events': waiting}"  v-if="!showQuantity && useLargeScale && canBeAddedToBasket" @click="directToItem()">
             <i class="fa fa-arrow-right fa-lg mobile-icon-right"></i><span>{{ trans("Ceres::Template.itemShowItem") }}</span>
         </div>
 
-        <div v-if="!showQuantity && useLargeScale && !canBeAddedToBasket"  @click="directToItem()">
+        <div class="btn btn-outline-primary" v-if="!showQuantity && useLargeScale && !canBeAddedToBasket"  @click="directToItem()">
           <i class="fa fa-arrow-right fa-lg mobile-icon-right"></i><span>{{ trans("Ceres::Template.itemShowItem") }}</span>
         </div>
 
