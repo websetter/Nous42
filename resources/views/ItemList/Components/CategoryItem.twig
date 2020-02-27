@@ -42,41 +42,38 @@
             <div class="thumb-content">
                 <div class="thumb-meta" v-if="item.prices.default.unitPrice.value > 0">
                     <div class="prices">
-                        <div v-if="item.prices.rrp && item.prices.rrp.price.value > 0 && item.prices.rrp.price.value > item.prices.default.unitPrice.value" class="price-view-port">
+                        <p v-if="item.prices.rrp && item.prices.rrp.price.value > 0 && item.prices.rrp.price.value > item.prices.default.unitPrice.value" class="price-view-port">
                           <span class="crossprice" v-if="item.prices.specialOffer">
                                {{ trans("Nous42::Template.instead") }} ${ item.prices.default.unitPrice.formatted }
                            </span>
                            <span class="crossprice" v-else>
                                {{ trans("Nous42::Template.instead") }} ${ item.prices.rrp.unitPrice.formatted }
                            </span>
-                        </div>
+                        </p>
 
-                        <div class="price">
+                        <p class="price">
                             ${ item.prices.default.unitPrice.formatted | specialOffer(item.prices, "unitPrice", "formatted") } *
-                        </div>
+                        </p>
                     </div>
 
-                    <div class="category-unit-price" v-if="!(item.unit.unitOfMeasurement === 'C62' && item.unit.content === 1)">
+                    <p class="category-unit-price" v-if="!(item.unit.unitOfMeasurement === 'C62' && item.unit.content === 1)">
                         <span>${ item.unit.content }</span>
                         <span>${ item.unit.names.name }</span>
                         <span v-if="item.variation.mayShowUnitPrice">| ${ item.prices.default.basePrice }</span>
-                    </div>
+                    </p>
                 </div>
                 <div v-else class="thumb-meta">
                     <div class="prices">
-                        <div class="price">
+                        <p class="price">
                               {{ trans("Nous42::Template.onDemandShort") }}
-                        </div>
+                        </p>
                     </div>
                 </div>
                 <a :href="item | itemURL" :title="item | itemName" class="thumb-title small">
                     ${ item | itemName }
                 </a>
             </div>
-
-            <button class="btn btn-outline-primary" data-original-title="Artikel anzeigen">
-              <a :href="item | itemURL" :title="item | itemName" ><i class="fa fa-arrow-right fa-lg mobile-icon-right"></i><span>{{ trans("Ceres::Template.itemShowItem") }}</span></a>
-            </button>
+            <a :href="item | itemURL" :title="item | itemName" class="btn btn-outline-primary"><i class="fa fa-arrow-right fa-lg mobile-icon-right"></i><span>{{ trans("Ceres::Template.itemShowItem") }}</span></a>
             </slot>
             <!-- ./ITEM DETAILS  -->
         </div>
