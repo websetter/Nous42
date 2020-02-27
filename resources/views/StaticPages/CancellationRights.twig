@@ -17,6 +17,10 @@
     <div class="container-max page-content">
         <div class="row">
             <div class="col-12">
+              {% autoescape false %}
+                  <h1>{{ trans("Ceres::Template.cancellationRights", {"hyphen": "&shy;"}) }}</h1>
+              {% endautoescape %}
+              
                 {% if cancellationRights.htmlText %}
                     {{ cancellationRights.htmlText | raw }}
                 {% else %}
