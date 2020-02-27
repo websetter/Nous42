@@ -7,11 +7,12 @@
               <li id="plentycat_{{ category.id }}" class="{% if category.children is not empty %}ddown {% endif %}{% for breadcrumb in breadcrumbs %}{% if category.id == breadcrumb.id %} active{% endif %}{% endfor %}">
                   <a href="{{ urlNow }}{{ urls.trailingSlashSuffix }}" title="{{ category.details[0].name }}">{{ category.details[0].name }}</a>
                   {% if category.children is not empty  %}
+                    {% set counter = counter + 1 %}
                       <span class="d-lg-none nav-direction" data-toggle="collapse" href="#navDropdown{{ counter }}" aria-expanded="false">
                           <i class="fa fa-caret-down" aria-hidden="true"></i>
                       </span>
                       <ul id="navDropdown{{ counter }}" class="collapse">
-                          {{ sidemenu.get_menu(breadcrumbs, category.children, urlNow, counter + 1) }}
+                          {{ sidemenu.get_menu(breadcrumbs, category.children, urlNow, counter ) }}
                       </ul>
                   {% endif %}
               </li>
