@@ -8,7 +8,7 @@
 
           {% if category.details[0] %}
               <li id="plentycat_{{ category.id }}" class="{% if category.children is not empty %}ddown {% endif %}{% for breadcrumb in breadcrumbs %}{% if category.id == breadcrumb.id %} active{% endif %}{% endfor %}">
-                  <a href="{{ urlNow }}{{ urls.trailingSlashSuffix }}" title="{{ category.details[0].name }}">{{ category.details[0].name }}</a>
+                  <a href="{% if lang == "en" %}/en{% endif %}{{ urlNow }}{{ urls.trailingSlashSuffix }}" title="{{ category.details[0].name }}">{{ category.details[0].name }}</a>
                   {% if category.children is not empty  %}
                     {% set counter = counter + 1 %}
                       <span class="d-lg-none nav-direction" data-toggle="collapse" href="#navDropdown{{ counter }}" aria-expanded="false">
