@@ -8,7 +8,7 @@
 
 {% if ('item.recommendedPrice' in itemData or 'all' in itemData) %}
     <span class="crossprice small" v-if="currentVariation.prices.rrp && currentVariation.prices.rrp.unitPrice.value > 0 && currentVariation.prices.rrp.unitPrice.value > currentVariation.prices.default.unitPrice.value">
-            ${ currentVariation.prices.rrp.unitPrice.formatted | itemCrossPrice  }
+      {{ trans("Nous42::Template.instead") }} ${ currentVariation.prices.rrp.unitPrice.formatted   }
     </span>
 {% endif %}
 
