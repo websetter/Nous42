@@ -1,7 +1,11 @@
 {% extends getPartial('page-design') %}
 
 {% block PartialHead %}
+  {% if category.details[0].metaTitle %}
     <title>{{ category.details[0].metaTitle }} | {{ trans("Ceres::Template.headerCompanyName") }}</title>
+  {% else %}
+    <title>{{ category.details[0].name }} | {{ trans("Ceres::Template.headerCompanyName") }}</title>
+  {% endif %}
 
     <meta name="description" content="{{ category.details[0].metaDescription }}">
     <meta name="keywords" content="{{ category.details[0].metaKeywords }}">
