@@ -78,6 +78,13 @@
                   </ul>
               {% endif %}
             </div>
+            <div class="col-12">
+              <p>{{ trans('Nous42::Template.footerColumnPreisHinweis') }}
+                <a href="{{ trans('Nous42::Template.footerColumnPreisHinweisLink') }}" title="{{ trans('Nous42::Template.footerColumnPreisHinweis2') }}">
+                  {{ trans('Nous42::Template.footerColumnPreisHinweis2') }}
+                </a>
+              </p>
+            </div>
         </div>
 
           {% if ceresConfig.pagination.position in ['bottom', 'top_bottom'] %}
